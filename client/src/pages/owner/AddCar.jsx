@@ -74,16 +74,45 @@ const AddCar = () => {
                     </div>
                 </div>
 
+                {/* Car transmission, fuel type, seating capacity */}
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
                     <div className="flex flex-col w-full">
-                        <label htmlFor="">Category</label>
-                        <select onChange={e => setCar({ ...car, category: e.target.value })} value={car.category} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
-                            <option value="">Select a category</option>
-                            <option value="Sedan">Sedan</option>
-                            <option value="SUV">SUV</option>
-                            <option value="Van">Van</option>
+                        <label htmlFor="">Transmission</label>
+                        <select onChange={e => setCar({ ...car, transmission: e.target.value })} value={car.transmission} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
+                            <option value="">Select a transmission</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Semi-Automatic">Semi-Automatic</option>
                         </select>
                     </div>
+
+                    <div className="flex flex-col w-full">
+                        <label htmlFor="">Feul Type</label>
+                        <select onChange={e => setCar({ ...car, fuel_type: e.target.value })} value={car.fuel_type} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
+                            <option value="">Select a fuel type</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+
+                    <div className="flex flex-col w-full">
+                        <label htmlFor="">Seating Capacity</label>
+                        <input type="number" placeholder='4' required className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none' value={car.seating_capacity} onChange={e => setCar({ ...car, seating_capacity: e.target.value })} />
+                    </div>
+                </div>
+
+                {/* Location */}
+                <div className="flex flex-col w-full">
+                    <label htmlFor="">Feul Type</label>
+                    <select onChange={e => setCar({ ...car, fuel_type: e.target.value })} value={car.fuel_type} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
+                        <option value="">Select a fuel type</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
                 </div>
             </form>
         </div>
