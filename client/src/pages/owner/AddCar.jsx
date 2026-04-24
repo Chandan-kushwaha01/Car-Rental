@@ -28,7 +28,7 @@ const AddCar = () => {
         <div className='px-4 py-10 md:px-10 flex-1'>
             <Title title="Add New Car" subTitle="Fill in the details to list a new car for booking, including pricing, availability and car specifications." />
 
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={onSubmitHandler} className='flex flex-col gap-5 text-gray-500 text-sm mt-6 max-w-xl'>
                 {/* Car image */}
                 <div className='flex items-center w-full gap-2'>
                     <label htmlFor="car-image">
@@ -105,15 +105,26 @@ const AddCar = () => {
 
                 {/* Location */}
                 <div className="flex flex-col w-full">
-                    <label htmlFor="">Feul Type</label>
-                    <select onChange={e => setCar({ ...car, fuel_type: e.target.value })} value={car.fuel_type} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
-                        <option value="">Select a fuel type</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Petrol">Petrol</option>
-                        <option value="Electric">Electric</option>
-                        <option value="Hybrid">Hybrid</option>
+                    <label htmlFor="">Location</label>
+                    <select onChange={e => setCar({ ...car, location: e.target.value })} value={car.location} className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none'>
+                        <option value="">Select a location</option>
+                        <option value="New York">New York</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="Houston">Houston</option>
+                        <option value="Chicago">Chicago</option>
                     </select>
                 </div>
+
+                {/* Car description */}
+                <div className="flex flex-col w-full">
+                    <label htmlFor="">Description</label>
+                    <textarea rows={5} placeholder='e.g. A luxurious SUV with a specious interior and a powerful engine.' required className='px-3 py-2 mt-1 border border-borderColor rounded-md outline-none' value={car.description} onChange={e => setCar({ ...car, description: e.target.value })} > </textarea>
+                </div>
+
+                <button className='flex items-center gap-2 px-4 py-2.5 mt-4 bg-primary text-white rounded-md font-medium w-max cursor-pointer'>
+                    <img src={assets.tick_icon} alt="" />
+                    List Your Car
+                </button>
             </form>
         </div>
     )
