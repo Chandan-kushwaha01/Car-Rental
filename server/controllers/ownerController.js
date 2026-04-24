@@ -74,35 +74,43 @@ export const getOwnerCars = async (req, res) => {
 // API to Toggle car availability
 export const toggleCarAvailability = async (req, res) => {
     try {
-        const {_id} = req.user;
-        const {carId} = req.body;
-        const car = await Car.findById({carId});
+        const { _id } = req.user;
+        const { carId } = req.body;
 
-        // Checking cars is belongs to the user
-        if(car.owner.toString() !== _id.toString()) {
-            res.json({ success: false, message: "Unauthorized" });
+        const car = await Car.findById(carId); // ✅ FIX
+
+        if (!car) {
+            return res.json({ success: false, message: "Car not found" });
+        }
+
+        if (car.owner.toString() !== _id.toString()) {
+            return res.json({ success: false, message: "Unauthorized" });
         }
 
         car.isAvaliable = !car.isAvaliable;
         await car.save();
 
-        res.json({ success: true, message: "Availability Toggled" });
+        res.json({ success: true, message: "Availability Update" });
     } catch (error) {
         console.log(error.message);
         res.json({ success: false, message: error.message });
     }
-}
+};
 
 // API to Delete a car
 export const deleteCar = async (req, res) => {
     try {
-        const {_id} = req.user;
-        const {carId} = req.body;
-        const car = await Car.findById({carId});
+        const { _id } = req.user;
+        const { carId } = req.body;
 
-        // Checking cars is belongs to the user
-        if(car.owner.toString() !== _id.toString()) {
-            res.json({ success: false, message: "Unauthorized" });
+        const car = await Car.findById(carId);
+
+        if (!car) {
+            return res.json({ success: false, message: "Car not found" });
+        }
+
+        if (car.owner.toString() !== _id.toString()) {
+            return res.json({ success: false, message: "Unauthorized" });
         }
 
         car.owner = null;
@@ -115,7 +123,7 @@ export const deleteCar = async (req, res) => {
         console.log(error.message);
         res.json({ success: false, message: error.message });
     }
-}
+};
 
 // API to get Dashboard data
 export const getDashboardData = async (req, res) => {
